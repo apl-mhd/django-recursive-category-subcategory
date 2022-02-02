@@ -13,7 +13,7 @@ def index(request):
     tags = Tag.objects.all()
     category = Genre.objects.filter(parent=None)
 
-    a = "<ul>"
+    htmltag = "<ul>"
    
 
     catagories = Category.objects.filter(parent = NULL)
@@ -46,18 +46,18 @@ def index(request):
 
     
     for j in catagories:
-        a += "<li>"+ str(j) 
+        htmltag += "<li>"+ str(j) 
         print(j)
-        a = rec(j.id, a)
+        htmltag = rec(j.id, htmltag)
 
-    a += "</ul>"
+    htmltag += "</ul>"
 
-    print(a)
-
-
+    print(htmltag)
 
 
-    context = {'genres': genres, 'gen':gen, 'tags':tags, 'category': category, 'catagories':catagories ,'a': a }
+
+
+    context = {'genres': genres, 'gen':gen, 'tags':tags, 'category': category, 'catagories':catagories ,'htmltag': htmltag }
 
     return render(request, "base/index.html", context)
 
