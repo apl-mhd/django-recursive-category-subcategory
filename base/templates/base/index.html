@@ -8,22 +8,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        
+    </style>
 </head>
 <body>
-    <h1>{{genres}}</h1>
-    <h1>{{gen}}</h1>
 
     <ul>
+        <li>
+            Mobile
+            <ul>
+                <li>
+                    Iphone
+                </li>
+                <li>
+                    Samsung
+                    <ul>
+
+                        <li>Galaxy</li>
+                    </ul>
+                </li>
+    
+            </ul>
+
+        </li>
+
+        <li>
+             Laptop
+        </li>
+</ul>
+
+    <hr>
+    <!-- <h1>{{genres}}</h1>
+    <h1>{{gen}}</h1> -->
+    
+    {{a|safe}}
+
+    <!-- {{catagories}} -->
+
+    <!-- <ul>
         {% recursetree genres %}
             <li>
                 {{ node.name }}-{{node.id}}
                 {% if not node.is_leaf_node %}
                     <ul class="children">
-                        {{ children }}-{{children.id}}
+                        {{children}} 
                     </ul>
                 {% endif %}
             </li>
         {% endrecursetree %}
     </ul>
+    <hr> -->
+    <!-- {{category}} -->
+
+    <!-- {% for i in category  %}
+        <ul>
+            <li>
+                {{i}}
+                <ul>
+                    {% for cat in i.get_children %}              
+                        <li>{{cat.name}}
+                            <ul>
+                                {% for ca in cat.get_children  %}
+                                    <li>{{ca.name}}</li>
+                                {% endfor %}
+                            </ul>
+                        </li> 
+                     {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    {% endfor %} -->
+
+
 </body>
 </html>
