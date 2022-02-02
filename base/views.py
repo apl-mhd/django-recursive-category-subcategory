@@ -40,7 +40,8 @@ def index(request):
         # for i in child:
         #  a +="<li>"+ str(i) +"</li>"
         #  print(i)
-        #  rec(i.id, a)
+        #  rec(i.id, a)aa
+        
         x += "</li>"
         return x
 
