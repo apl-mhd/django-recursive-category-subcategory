@@ -10,72 +10,40 @@
     <title>Document</title>
 
     <style>
-        
+        ul{
+            list-style: none;
+        }
     </style>
 </head>
 <body>
 
     <div id="replace">
+        {{htmltag|safe}}
 
     </div>
 
-    <!-- <ul>
-        <li>
-            Mobile
-            <ul>
-                <li>
-                    Iphone
-                </li>
-                <li>
-                    Samsung
-                    <ul>
-
-                        <li>Galaxy</li>
-                    </ul>
-                </li>
-    
-            </ul>
-
-        </li>
-
-        <li>
-             Laptop
-        </li>
-    </ul> -->
-
     <hr>
     
-    
-    {{htmltag|safe}}
-    <hr>
-
-    <p>Heelllo</p>
    
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
     <script>
-        $(document).ready(function(){
-
-           
-
-
-            $("li a").click(function(e){
+        $(document).on('click', "li a", function(){
             $(".catparent").remove();
             let a = $(this).attr('id');
-            $(this).parent().append("<div class='catparent'><input class='catvalue' type='text' data-id='" + a +"'><input class='catsave' type='submit' value='Save'/>  </div>")
-           console.log(a);
+            $(this).after("<div class='catparent'><input class='catvalue' type='text' data-id='" + a +"'><input class='catsave' type='submit' value='Save'/>  </div>")
+            console.log(a);
+        });
+        $(document).on('click', ".catsave", function(){
+            let catName = $(this).parent().find('.catvalue').val();
+            let catid = $(this).parent().find('.catvalue').attr('data-id');
+            $(this).parent().remove();
 
-           $(".catsave").click(function(){
+            console.log(catName, catid);
 
-               let catName = $(this).parent().find('.catvalue').val();
-               let catid = $(this).parent().find('.catvalue').attr('data-id');
-               $(this).parent().remove();
+            categoryData = {catName: catName, catId: catid}
 
-               console.log(catName, catid);
-
-               categoryData = {catName: catName, catId: catid}
-
-               $.ajax({
+            $.ajax({
                 
                 url: "{% url 'save-category' %}",
                 method: 'POST',
@@ -87,11 +55,7 @@
                     $("#replace").html(data.htmltag);
                 }
                 
-
-               });
-
-           })
-        })
+            });
         });
     </script>
 
