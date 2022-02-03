@@ -8,28 +8,36 @@ from . models import *
 
 def index(request):
 
+    
+    c = str(1)
+    a = '<a id="'+c+'" href="">'
+    print(a)
+
+    #allChild = Category.objects.filter( id not parent)
     catagories = Category.objects.filter(parent = NULL)
-    htmltag = "<ul>"
+    htmltag = '<ul>'
 
     def recur(id, x): 
         child = Category.objects.filter(parent = id )
         if(len(child) != 0):
-            x += "<ul>"
+            x += '<ul>'
             for j in child:
-                x += "<li>"+ j.name
+                id = str(j.id)
+                x += '<li id="'+id+'">'+ j.name
                 x = recur(j.id, x)
             
-            x +="</ul>"
-        x += "</li>"
+            x +='</ul>'
+        x += '</li>'
         return x
 
     
     for cat in catagories:
-        htmltag += "<li>"+ cat.name
+        id = str(cat.id)
+        htmltag += '<li id="'+id+'">'+ cat.name
         #print(cat)
         htmltag = recur(cat.id, htmltag)
 
-    htmltag += "</ul>"
+    htmltag += '</ul>'
 
     #print(htmltag)
 
