@@ -45,7 +45,19 @@
     {{htmltag|safe}}
     <hr>
 
+    <p>Heelllo</p>
    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("li a").click(function(e){
+            let a = $(this).attr('id');
+            console.log(a);
+        
+        })
+        });
+    </script>
 
 </body>
 </html>

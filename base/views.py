@@ -23,7 +23,7 @@ def index(request):
             x += '<ul>'
             for j in child:
                 id = str(j.id)
-                x += '<li id="'+id+'">'+ j.name
+                x += '<li> <a id="'+id +'" href="#">'+ j.name + '</a>'
                 x = recur(j.id, x)
             
             x +='</ul>'
@@ -33,13 +33,12 @@ def index(request):
     
     for cat in catagories:
         id = str(cat.id)
-        htmltag += '<li id="'+id+'">'+ cat.name
+        #x += '<li id="'+id+'">'+ j.name
+        htmltag += '<li> <a id="'+id +'"  href="#">'+ cat.name + '</a>'
         #print(cat)
         htmltag = recur(cat.id, htmltag)
 
     htmltag += '</ul>'
-
-    #print(htmltag)
 
     context = {'htmltag': htmltag }
 
