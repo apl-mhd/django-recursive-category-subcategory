@@ -15,6 +15,10 @@
 </head>
 <body>
 
+    <div id="replace">
+
+    </div>
+
     <!-- <ul>
         <li>
             Mobile
@@ -45,7 +49,51 @@
     {{htmltag|safe}}
     <hr>
 
+    <p>Heelllo</p>
    
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+           
+
+
+            $("li a").click(function(e){
+            $(".catparent").remove();
+            let a = $(this).attr('id');
+            $(this).parent().append("<div class='catparent'><input class='catvalue' type='text' data-id='" + a +"'><input class='catsave' type='submit' value='Save'/>  </div>")
+           console.log(a);
+
+           $(".catsave").click(function(){
+
+               let catName = $(this).parent().find('.catvalue').val();
+               let catid = $(this).parent().find('.catvalue').attr('data-id');
+               $(this).parent().remove();
+
+               console.log(catName, catid);
+
+               categoryData = {catName: catName, catId: catid}
+
+               $.ajax({
+                
+                url: "{% url 'save-category' %}",
+                method: 'POST',
+                data: categoryData,
+                success: function(data){
+                    console.log(data);
+
+
+                    $("#replace").html(data.htmltag);
+                }
+                
+
+               });
+
+           })
+        })
+        });
+    </script>
 
 </body>
 </html>
